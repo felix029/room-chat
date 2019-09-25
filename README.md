@@ -1,5 +1,5 @@
 # Simple room chat
-Really simple room chat using Node.js with the socket.io module and the client that goes with it.
+Really simple room chat using Node.js with the socket.io module and the client that goes with it. Any constructive comments or help is appreciated.
 
 ## Installation
 

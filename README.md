@@ -12,11 +12,12 @@ npm init
 ```
 
 Then you can press enter until it's done and when the file is created add this structure at the end of it:
+(Don't forget to add a coma at the end of the last element of the .json file before adding this)
 
 ```
 	"dependencies":{
-		"socket.io":*,
-		"express":*
+		"socket.io":"*",
+		"express":"*"
 	}
 ```
 

@@ -3,7 +3,7 @@ Really simple room chat using Node.js with the socket.io module and the client t
 
 ## Installation
 
-Make sure have installed `node.js` on your computer, then install `` using the following in the root directory of your project
+Make sure have installed `node.js` on your computer, then install socket.io and express using the following in the root directory of your project
 
 When you're on your directory, you will have to initialise a package.json file by doing this command:
 

@@ -16,7 +16,10 @@ app.get('/', function(req, res){
 io.sockets.on('connection', function(socket){
     connections.push(socket);
     console.log('Connected, %s sockets connected', connections.length);
-
+	if(rooms){
+		updateRooms();
+	}	
+	
     //Disconnect
     socket.on('disconnect', function(data){
         
@@ -54,6 +57,8 @@ io.sockets.on('connection', function(socket){
         rooms[roomNumber] = [];
         
         console.log("Room " + roomNumber + " created.");
+		
+		updateRooms();
     });
     
     //Join room
@@ -95,5 +100,11 @@ io.sockets.on('connection', function(socket){
             connections[i].emit('get users', rooms[connections[i].room]);
         }
     }
+	
+	function updateRooms(){
+		for(let i = 0; i < connections.length; i++){
+			connections[i].emit('get room list', Object.keys(rooms));
+		}
+	}
     
 });

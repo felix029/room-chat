@@ -35,6 +35,9 @@
                         <input type="submit" id="joinSub" class="btn btn-primary" value="Join" />
                         <input type="submit" id="createSub" class="btn btn-primary" value="Create" />
                     </div>
+					<div id="roomList" class="form-group" style="overflow: auto; height: 350px; background-color: rgb(245,245,245); padding: 10px; border: 1px solid rgb(221, 221, 221); border-radius: 5px;">
+						<h3>Rooms:</h3>
+					</div>
                 </form>
             </div>
         </div>
@@ -58,7 +61,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div id="chat" style="overflow: scroll; height: 350px; background-color: rgb(245,245,245); padding: 10px; border: 1px solid rgb(221, 221, 221); border-radius: 5px;"></div>
+                <div id="chat" style="overflow: auto; height: 350px; background-color: rgb(245,245,245); padding: 10px; border: 1px solid rgb(221, 221, 221); border-radius: 5px;"></div>
                 <form id="messageForm">
                     <div class="form-group">
                         <label>Enter message</label>
@@ -78,6 +81,7 @@
             let $roomFormArea = $('#roomFormArea');
             let $roomForm = $('#roomForm');
             let $room = $('#room');
+			let $roomList = $('#roomList');
             
             //second form (usrename)
             let $userFormArea = $('#userFormArea');
@@ -125,6 +129,16 @@
                     
                 $room.val('');
             });
+			
+			socket.on('get room list', function(data){
+			
+				if(data){
+					for(let i = 0; i <= data.length; i++){
+						$roomList.append("<p>"+ data[i] +"</p>");
+					}
+				}
+				
+			});
 
             //USER SECTION =======================================================================
             $userForm.submit(function(e){
@@ -164,8 +178,9 @@
             })
 
             socket.on('new message', function (data) {
-                $chat.append('<strong>' + data.user + ':</strong> ' + data.msg + '</br>');
+                $chat.prepend('<strong>' + data.user + ':</strong> ' + data.msg + '</br>');
             })
+			
         });
     </script>
 </body>

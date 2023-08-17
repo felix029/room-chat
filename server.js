@@ -1,7 +1,7 @@
 let express = require('express');
 let app = express();
 let server = require('http').createServer(app);
-let io = require('socket.io').listen(server);
+let io = require('socket.io')(server);
 let rooms = {};
 let connections = [];
 

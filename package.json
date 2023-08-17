@@ -1,0 +1,24 @@
+{
+  "name": "room-chat",
+  "version": "1.0.0",
+  "description": "Really simple room chat using Node.js with the socket.io module and the client that goes with it. Any constructive comments or help is appreciated.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felix029/room-chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felix029/room-chat/issues"
+  },
+  "homepage": "https://github.com/felix029/room-chat#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  }
+}

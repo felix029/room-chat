@@ -2,11 +2,27 @@ let express = require('express');
 let app = express();
 let server = require('http').createServer(app);
 let io = require('socket.io')(server);
+const os = require('os');
 let rooms = {};
 let connections = [];
 
-server.listen(process.env.PORT || 3000);
+const port = process.env.PORT || 3000;
+server.listen(port);
 console.log("Server running");
+
+// Get local IP
+const interfaces = os.networkInterfaces();
+let localIP = '';
+for (let iface in interfaces) {
+    for (let alias of interfaces[iface]) {
+        if (alias.family === 'IPv4' && !alias.internal) {
+            localIP = alias.address;
+            break;
+        }
+    }
+    if (localIP) break;
+}
+console.log(`Go to ${localIP}:${port} on the same local network to access the chat room`);
 
 
 app.get('/', function(req, res){

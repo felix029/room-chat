@@ -142,18 +142,16 @@
 
             //CHATROOM SECTION ===================================================================
             socket.on('get room', function(data){
-                $roomInfo.prepend("<h2>Room number: " + data + "</h2>");
+                $roomInfo.prepend($('<h2>Room number: </h2>').append($('<span>').text(data)));
                 $roomNumber = data;
             });
 
 
             socket.on('get users', function(data){
-                let html = '';
+                $users.empty();
                 for(let i = 0; i < data.length; i++){
-                    html += '<li class="list-group-item">' + data[i] + '</li>';
+                    $users.append($('<li class="list-group-item">').text(data[i]));
                 }
-
-                $users.html(html);
             });
 
             //Message section ====================================
@@ -164,7 +162,8 @@
             })
 
             socket.on('new message', function (data) {
-                $chat.append('<strong>' + data.user + ':</strong> ' + data.msg + '</br>');
+                const $msg = $('<div>').append($('<strong>').text(data.user + ':'), ' ', document.createTextNode(data.msg));
+                $chat.append($msg, '<br>');
             })
         });
     </script>
